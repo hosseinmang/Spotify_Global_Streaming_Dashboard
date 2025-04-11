@@ -155,6 +155,48 @@ SPOTIFY_COLORS = {
     'warning': '#FF5722'        # Warning orange
 }
 
+# Function to update plot layouts
+def update_fig_layout(fig, title):
+    """Update the layout of plotly figures to match Spotify theme."""
+    fig.update_layout(
+        title=dict(
+            text=title,
+            font=dict(size=24, color='#FFFFFF'),
+            x=0.5,
+            y=0.95
+        ),
+        plot_bgcolor='#191414',
+        paper_bgcolor='#191414',
+        font_color='#FFFFFF',
+        showlegend=True,
+        legend=dict(
+            bgcolor='#191414',
+            font=dict(color='#FFFFFF'),
+            bordercolor='#282828',
+            borderwidth=1
+        ),
+        xaxis=dict(
+            gridcolor='#282828',
+            gridwidth=1,
+            griddash='dot',
+            tickfont=dict(color='#FFFFFF'),
+            showline=True,
+            linecolor='#535353',
+            linewidth=1
+        ),
+        yaxis=dict(
+            gridcolor='#282828',
+            gridwidth=1,
+            griddash='dot',
+            tickfont=dict(color='#FFFFFF'),
+            showline=True,
+            linecolor='#535353',
+            linewidth=1
+        ),
+        margin=dict(t=100, b=50, l=50, r=50)
+    )
+    return fig
+
 # Color palette for genres
 GENRE_COLORS = {
     'Pop': '#1DB954',      # Spotify green
@@ -515,45 +557,4 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True
-)
-
-# Update visualization layouts
-def update_fig_layout(fig, title):
-    fig.update_layout(
-        title=dict(
-            text=title,
-            font=dict(size=24, color='#FFFFFF'),
-            x=0.5,
-            y=0.95
-        ),
-        plot_bgcolor='#191414',
-        paper_bgcolor='#191414',
-        font_color='#FFFFFF',
-        showlegend=True,
-        legend=dict(
-            bgcolor='#191414',
-            font=dict(color='#FFFFFF'),
-            bordercolor='#282828',
-            borderwidth=1
-        ),
-        xaxis=dict(
-            gridcolor='#282828',
-            gridwidth=1,
-            griddash='dot',
-            tickfont=dict(color='#FFFFFF'),
-            showline=True,
-            linecolor='#535353',
-            linewidth=1
-        ),
-        yaxis=dict(
-            gridcolor='#282828',
-            gridwidth=1,
-            griddash='dot',
-            tickfont=dict(color='#FFFFFF'),
-            showline=True,
-            linecolor='#535353',
-            linewidth=1
-        ),
-        margin=dict(t=100, b=50, l=50, r=50)
-    )
-    return fig 
+) 
