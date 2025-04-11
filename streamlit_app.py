@@ -270,7 +270,6 @@ with tab1:
         template="plotly_dark"
     )
     
-    # Update layout
     fig.update_layout(
         title=dict(
             text=f"{metric_option} by Genre Over Time",
