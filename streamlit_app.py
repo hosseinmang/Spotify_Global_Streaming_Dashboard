@@ -309,10 +309,47 @@ with tab1:
         x='Release Year',
         y=metric_option,
         color='Genre',
-        template="plotly_dark",
-        title=f"{metric_option} by Genre Over Time"
+        template="plotly_dark"
     )
-    fig = update_fig_layout(fig, f"{metric_option} by Genre Over Time")
+    
+    # Update layout directly
+    fig.update_layout(
+        title=dict(
+            text=f"{metric_option} by Genre Over Time",
+            font=dict(size=24, color='#FFFFFF'),
+            x=0.5,
+            y=0.95
+        ),
+        plot_bgcolor='#191414',
+        paper_bgcolor='#191414',
+        font_color='#FFFFFF',
+        showlegend=True,
+        legend=dict(
+            bgcolor='#191414',
+            font=dict(color='#FFFFFF'),
+            bordercolor='#282828',
+            borderwidth=1
+        ),
+        xaxis=dict(
+            gridcolor='#282828',
+            gridwidth=1,
+            griddash='dot',
+            tickfont=dict(color='#FFFFFF'),
+            showline=True,
+            linecolor='#535353',
+            linewidth=1
+        ),
+        yaxis=dict(
+            gridcolor='#282828',
+            gridwidth=1,
+            griddash='dot',
+            tickfont=dict(color='#FFFFFF'),
+            showline=True,
+            linecolor='#535353',
+            linewidth=1
+        ),
+        margin=dict(t=100, b=50, l=50, r=50)
+    )
     
     st.plotly_chart(fig, use_container_width=True)
     
@@ -350,15 +387,46 @@ with tab2:
         x='Artist',
         y=metric,
         color='Genre',
-        template="plotly_dark",
-        title=f"Top {top_n} Artists by {metric}"
+        template="plotly_dark"
     )
     
     fig.update_layout(
-        plot_bgcolor=SPOTIFY_COLORS['background'],
-        paper_bgcolor=SPOTIFY_COLORS['background'],
-        font_color=SPOTIFY_COLORS['text'],
-        xaxis_tickangle=45
+        title=dict(
+            text=f"Top {top_n} Artists by {metric}",
+            font=dict(size=24, color='#FFFFFF'),
+            x=0.5,
+            y=0.95
+        ),
+        plot_bgcolor='#191414',
+        paper_bgcolor='#191414',
+        font_color='#FFFFFF',
+        showlegend=True,
+        legend=dict(
+            bgcolor='#191414',
+            font=dict(color='#FFFFFF'),
+            bordercolor='#282828',
+            borderwidth=1
+        ),
+        xaxis=dict(
+            gridcolor='#282828',
+            gridwidth=1,
+            griddash='dot',
+            tickfont=dict(color='#FFFFFF'),
+            showline=True,
+            linecolor='#535353',
+            linewidth=1,
+            tickangle=45
+        ),
+        yaxis=dict(
+            gridcolor='#282828',
+            gridwidth=1,
+            griddash='dot',
+            tickfont=dict(color='#FFFFFF'),
+            showline=True,
+            linecolor='#535353',
+            linewidth=1
+        ),
+        margin=dict(t=100, b=100, l=50, r=50)  # Increased bottom margin for rotated labels
     )
     
     st.plotly_chart(fig, use_container_width=True)
@@ -390,15 +458,37 @@ with tab3:
         locationmode='country names',
         color=metric,
         color_continuous_scale=['#535353', '#1DB954'],
-        template="plotly_dark",
-        title=f"Global Distribution of {metric}"
+        template="plotly_dark"
     )
     
     fig.update_layout(
-        plot_bgcolor=SPOTIFY_COLORS['background'],
-        paper_bgcolor=SPOTIFY_COLORS['background'],
-        font_color=SPOTIFY_COLORS['text'],
-        geo=dict(showframe=False, showcoastlines=True)
+        title=dict(
+            text=f"Global Distribution of {metric}",
+            font=dict(size=24, color='#FFFFFF'),
+            x=0.5,
+            y=0.95
+        ),
+        plot_bgcolor='#191414',
+        paper_bgcolor='#191414',
+        font_color='#FFFFFF',
+        showlegend=True,
+        legend=dict(
+            bgcolor='#191414',
+            font=dict(color='#FFFFFF'),
+            bordercolor='#282828',
+            borderwidth=1
+        ),
+        margin=dict(t=100, b=50, l=50, r=50),
+        geo=dict(
+            showframe=False,
+            showcoastlines=True,
+            projection_type='equirectangular',
+            bgcolor='#191414',
+            lakecolor='#191414',
+            landcolor='#282828',
+            coastlinecolor='#535353',
+            countrycolor='#535353'
+        )
     )
     
     st.plotly_chart(fig, use_container_width=True)
@@ -524,14 +614,39 @@ with tab4:
                 x='Importance',
                 y='Feature',
                 orientation='h',
-                template="plotly_dark",
-                title="Feature Importance in Prediction"
+                template="plotly_dark"
             )
             
             fig.update_layout(
-                plot_bgcolor=SPOTIFY_COLORS['background'],
-                paper_bgcolor=SPOTIFY_COLORS['background'],
-                font_color=SPOTIFY_COLORS['text']
+                title=dict(
+                    text="Feature Importance in Prediction",
+                    font=dict(size=24, color='#FFFFFF'),
+                    x=0.5,
+                    y=0.95
+                ),
+                plot_bgcolor='#191414',
+                paper_bgcolor='#191414',
+                font_color='#FFFFFF',
+                showlegend=False,
+                xaxis=dict(
+                    gridcolor='#282828',
+                    gridwidth=1,
+                    griddash='dot',
+                    tickfont=dict(color='#FFFFFF'),
+                    showline=True,
+                    linecolor='#535353',
+                    linewidth=1
+                ),
+                yaxis=dict(
+                    gridcolor='#282828',
+                    gridwidth=1,
+                    griddash='dot',
+                    tickfont=dict(color='#FFFFFF'),
+                    showline=True,
+                    linecolor='#535353',
+                    linewidth=1
+                ),
+                margin=dict(t=100, b=50, l=150, r=50)  # Increased left margin for feature names
             )
             
             st.plotly_chart(fig, use_container_width=True)
