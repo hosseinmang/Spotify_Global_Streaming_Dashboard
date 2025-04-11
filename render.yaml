@@ -1,13 +1,13 @@
 services:
   - type: web
     name: spotify-streaming-dashboard
-    env: docker
-    dockerfilePath: ./Dockerfile
-    healthCheckPath: /_stcore/health
+    runtime: python
+    buildCommand: |
+      pip install -r requirements.txt
+      cp *.csv .
+      cp *.joblib .
+    startCommand: streamlit run streamlit_app.py
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
-    plan: free
-    runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run streamlit_app.py 
+    plan: free 

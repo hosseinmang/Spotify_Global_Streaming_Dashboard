@@ -172,43 +172,61 @@ GENRE_COLORS = {
 # Load and preprocess data
 @st.cache_data
 def load_data():
-    df = pd.read_csv('Spotify_2024_Global_Streaming_Data.csv')
-    return df
+    try:
+        df = pd.read_csv('Spotify_2024_Global_Streaming_Data.csv')
+        st.sidebar.success("✅ Data loaded successfully!")
+        return df
+    except Exception as e:
+        st.sidebar.error(f"❌ Error loading data: {str(e)}")
+        return None
 
 df = load_data()
+
+if df is None:
+    st.error("Failed to load the dataset. Please check if the data file exists and is accessible.")
+    st.stop()
 
 # Initialize and train model
 @st.cache_resource
 def initialize_model():
-    # Initialize label encoders
-    country_le = LabelEncoder()
-    artist_le = LabelEncoder()
-    genre_le = LabelEncoder()
-    
-    # Fit label encoders
-    df['Country_encoded'] = country_le.fit_transform(df['Country'])
-    df['Artist_encoded'] = artist_le.fit_transform(df['Artist'])
-    df['Genre_encoded'] = genre_le.fit_transform(df['Genre'])
-    
-    # Prepare features
-    X = df[[
-        'Country_encoded',
-        'Artist_encoded',
-        'Genre_encoded',
-        'Release Year',
-        'Monthly Listeners (Millions)',
-        'Avg Stream Duration (Min)',
-        'Skip Rate (%)'
-    ]]
-    y = df['Total Streams (Millions)']
-    
-    # Train model
-    model = RandomForestRegressor(n_estimators=100, random_state=42)
-    model.fit(X, y)
-    
-    return model, country_le, artist_le, genre_le
+    try:
+        # Initialize label encoders
+        country_le = LabelEncoder()
+        artist_le = LabelEncoder()
+        genre_le = LabelEncoder()
+        
+        # Fit label encoders
+        df['Country_encoded'] = country_le.fit_transform(df['Country'])
+        df['Artist_encoded'] = artist_le.fit_transform(df['Artist'])
+        df['Genre_encoded'] = genre_le.fit_transform(df['Genre'])
+        
+        # Prepare features
+        X = df[[
+            'Country_encoded',
+            'Artist_encoded',
+            'Genre_encoded',
+            'Release Year',
+            'Monthly Listeners (Millions)',
+            'Avg Stream Duration (Min)',
+            'Skip Rate (%)'
+        ]]
+        y = df['Total Streams (Millions)']
+        
+        # Train model
+        model = RandomForestRegressor(n_estimators=100, random_state=42)
+        model.fit(X, y)
+        
+        st.sidebar.success("✅ Model initialized successfully!")
+        return model, country_le, artist_le, genre_le
+    except Exception as e:
+        st.sidebar.error(f"❌ Error initializing model: {str(e)}")
+        return None, None, None, None
 
 model, country_le, artist_le, genre_le = initialize_model()
+
+if None in (model, country_le, artist_le, genre_le):
+    st.error("Failed to initialize the model. Please check the error messages in the sidebar.")
+    st.stop()
 
 # Sidebar
 with st.sidebar:
