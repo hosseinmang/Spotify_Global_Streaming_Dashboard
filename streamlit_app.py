@@ -267,20 +267,20 @@ with tab1:
         x='Release Year',
         y=metric_option,
         color='Genre',
-        template="plotly_dark",
-        title=f"{metric_option} by Genre Over Time"
+        template="plotly_dark"
     )
     
     # Update layout
     fig.update_layout(
-        plot_bgcolor='#191414',
-        paper_bgcolor='#191414',
-        font_color='#FFFFFF',
         title=dict(
+            text=f"{metric_option} by Genre Over Time",
             font=dict(size=24, color='#FFFFFF'),
             x=0.5,
             y=0.95
         ),
+        plot_bgcolor='#191414',
+        paper_bgcolor='#191414',
+        font_color='#FFFFFF',
         showlegend=True,
         legend=dict(
             bgcolor='#191414',
