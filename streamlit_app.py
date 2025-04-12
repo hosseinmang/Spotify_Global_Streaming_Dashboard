@@ -722,11 +722,12 @@ st.markdown(
     <div style='
         text-align: center;
         padding: 20px;
-        background-color: #F8F9FA;
+        background-color: #191414;
         border-radius: 10px;
         margin-top: 30px;
+        border: 1px solid #333333;
     '>
-        <p style='color: #666666; font-size: 14px; margin: 0;'>
+        <p style='color: #FFFFFF; font-size: 14px; margin: 0;'>
             Developed by <a href='https://github.com/hosseinmang' style='color: #1DB954; text-decoration: none;'>@hosseinmang</a> | 
             Data: Spotify Global Streaming 2024
         </p>
