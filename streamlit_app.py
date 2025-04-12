@@ -20,7 +20,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Enhanced CSS with modern design and Spotify theme
+# Custom CSS with modern design and Spotify theme
 st.markdown("""
 <style>
     /* Main app styling */
@@ -28,222 +28,105 @@ st.markdown("""
         background-color: #191414 !important;
     }
     
-    /* Main title and header */
-    .main .block-container h1 {
-        color: #FFFFFF !important;
-        font-weight: 800 !important;
-        font-size: 42px !important;
-        text-align: center !important;
-        padding: 1.5rem 0 !important;
-        margin: 0 0 2rem 0 !important;
-        background: linear-gradient(90deg, #191414 0%, #282828 50%, #191414 100%);
-        border-bottom: 3px solid #1DB954 !important;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    /* Filter Options section */
+    [data-testid="stExpander"] {
+        background-color: #191414 !important;
+        border: none !important;
+        border-radius: 8px !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    [data-testid="stExpander"] > div:first-child {
+        background-color: #191414 !important;
+        border-radius: 8px 8px 0 0 !important;
+        padding: 1rem !important;
+    }
+    
+    [data-testid="stExpander"] > div:last-child {
+        background-color: #191414 !important;
+        border: 1px solid #333333 !important;
+        border-radius: 0 0 8px 8px !important;
+        padding: 1rem !important;
+    }
+    
+    /* Select boxes styling */
+    .stSelectbox, .stMultiSelect {
+        background-color: #191414 !important;
+        border: 1px solid #333333 !important;
+        border-radius: 8px !important;
+        padding: 0.5rem !important;
+    }
+    
+    .stSelectbox > div, .stMultiSelect > div {
+        background-color: #191414 !important;
     }
     
     /* Section headers */
     .main .block-container h2 {
-        color: #FFFFFF !important;
+        color: #1DB954 !important;
         font-weight: 600 !important;
         font-size: 32px !important;
         margin: 1.5rem 0 1rem 0 !important;
-        padding: 0.5rem 1rem !important;
-        border-left: 4px solid #1DB954 !important;
-        background: linear-gradient(90deg, rgba(29,185,84,0.1) 0%, rgba(29,185,84,0) 100%);
+        padding: 0.5rem 0 !important;
+        border: none !important;
+        background: none !important;
     }
     
-    .main .block-container h3 {
-        color: #FFFFFF !important;
-        font-weight: 500 !important;
-        font-size: 24px !important;
-        margin: 1rem 0 0.5rem 0 !important;
-        opacity: 0.9;
+    /* Plot styling */
+    .js-plotly-plot {
+        background-color: #191414 !important;
     }
     
-    /* Card styling with modern design */
-    div[data-testid="stVerticalBlock"] > div {
-        background-color: #282828;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-bottom: 1.5rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    .js-plotly-plot .plotly {
+        background-color: #191414 !important;
     }
     
-    div[data-testid="stVerticalBlock"] > div:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-    
-    /* Metric styling with modern design */
+    /* Metric cards */
     div[data-testid="metric-container"] {
-        background-color: #282828;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        padding: 1.25rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #191414 !important;
+        border: 1px solid #333333 !important;
+        border-radius: 8px !important;
+        padding: 1rem !important;
+        margin: 0.5rem 0 !important;
     }
     
     div[data-testid="metric-container"] label {
-        color: #B3B3B3 !important;
-        font-size: 0.875rem !important;
+        color: #1DB954 !important;
+        font-size: 1rem !important;
         font-weight: 500 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.5px !important;
     }
     
     div[data-testid="metric-container"] div[data-testid="metric-value"] {
-        color: #1DB954 !important;
+        color: #FFFFFF !important;
+        font-size: 2rem !important;
         font-weight: 700 !important;
-        font-size: 1.5rem !important;
-    }
-    
-    /* Tabs styling with modern design */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
-        background-color: #282828;
-        padding: 12px 16px;
-        border-radius: 12px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        margin-bottom: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        height: 45px;
-        background-color: transparent;
-        border: none;
-        color: #B3B3B3;
-        font-weight: 500;
-        padding: 8px 20px;
-        border-radius: 22px;
-        transition: all 0.2s ease;
-    }
-    
-    .stTabs [data-baseweb="tab"]:hover {
-        color: #FFFFFF;
-        background-color: rgba(29, 185, 84, 0.1);
-    }
-    
-    .stTabs [aria-selected="true"] {
-        background-color: #1DB954 !important;
-        color: #FFFFFF !important;
-        font-weight: 600;
-    }
-    
-    /* Input fields styling */
-    .stSelectbox [data-baseweb="select"],
-    .stNumberInput [data-baseweb="input"],
-    .stMultiSelect [data-baseweb="select"] {
-        background-color: #282828;
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        transition: all 0.2s ease;
-        color: #FFFFFF;
-    }
-    
-    .stSelectbox [data-baseweb="select"]:hover,
-    .stNumberInput [data-baseweb="input"]:hover,
-    .stMultiSelect [data-baseweb="select"]:hover {
-        border-color: #1DB954;
-    }
-    
-    /* Button styling with modern design */
-    .stButton > button {
-        background-color: #1DB954;
-        color: #FFFFFF;
-        font-weight: 600;
-        padding: 0.6rem 2rem;
-        border-radius: 25px;
-        border: none;
-        transition: all 0.2s ease;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-size: 0.875rem;
-    }
-    
-    .stButton > button:hover {
-        background-color: #1ed760;
-        box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
-        transform: translateY(-1px);
-    }
-    
-    .stButton > button:active {
-        transform: translateY(0);
-    }
-    
-    /* Sidebar styling with modern design */
-    [data-testid="stSidebar"] {
-        background-color: #282828;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 2rem 1rem;
-    }
-    
-    [data-testid="stSidebar"] .block-container {
-        margin-top: 1rem;
-    }
-    
-    [data-testid="stSidebar"] img {
-        margin-bottom: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Text styling */
-    .stMarkdown, .stText, p, span {
-        color: #FFFFFF !important;
-        line-height: 1.6;
     }
     
     /* Dataframe styling */
     .dataframe {
-        background-color: #282828 !important;
+        background-color: #191414 !important;
         color: #FFFFFF !important;
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .dataframe th {
-        background-color: rgba(29, 185, 84, 0.1) !important;
-        color: #FFFFFF !important;
+        background-color: #282828 !important;
+        color: #1DB954 !important;
         font-weight: 600 !important;
-        text-align: left !important;
-        padding: 12px !important;
+        padding: 0.75rem !important;
+        border: 1px solid #333333 !important;
     }
     
     .dataframe td {
-        padding: 10px !important;
-        border-color: rgba(255, 255, 255, 0.05) !important;
-    }
-    
-    /* Plotly chart styling */
-    .js-plotly-plot .plotly {
-        border-radius: 12px;
-        padding: 1rem;
-        background-color: #282828;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: #191414 !important;
+        color: #FFFFFF !important;
+        padding: 0.5rem !important;
+        border: 1px solid #333333 !important;
     }
     
     /* Hide Streamlit branding */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     div[data-testid="stToolbar"] {visibility: hidden;}
-    
-    /* Loading spinner */
-    .stSpinner > div {
-        border-color: #1DB954 !important;
-    }
-    
-    /* Tooltip styling */
-    div[data-baseweb="tooltip"] {
-        background-color: #282828 !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        color: #FFFFFF !important;
-        border-radius: 6px !important;
-        padding: 8px 12px !important;
-        font-size: 0.875rem !important;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -277,96 +160,82 @@ GENRE_COLORS = {
     'Reggaeton': '#FFA500' # Bright orange
 }
 
-# Enhanced plot theme function with modern design
+# Update plot theme settings
 def update_plot_theme(fig):
     fig.update_layout(
-        plot_bgcolor=SPOTIFY_COLORS['surface'],
-        paper_bgcolor=SPOTIFY_COLORS['surface'],
-        font_color=SPOTIFY_COLORS['text'],
+        plot_bgcolor='#191414',
+        paper_bgcolor='#191414',
+        font_color='#FFFFFF',
         title=dict(
             font=dict(
-                color=SPOTIFY_COLORS['text'],
+                color='#FFFFFF',
                 size=24,
                 family="Arial, sans-serif"
             ),
             x=0.5,
-            y=0.95,
-            xanchor='center',
-            yanchor='top'
+            y=0.95
         ),
         legend=dict(
-            bgcolor=SPOTIFY_COLORS['surface'],
+            bgcolor='#191414',
             font=dict(
-                color=SPOTIFY_COLORS['text'],
+                color='#FFFFFF',
                 size=12,
                 family="Arial, sans-serif"
             ),
-            bordercolor=SPOTIFY_COLORS['border'],
-            borderwidth=1,
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="right",
-            x=1
+            bordercolor='#333333',
+            borderwidth=1
         ),
         xaxis=dict(
-            gridcolor=SPOTIFY_COLORS['border'],
+            gridcolor='#333333',
             gridwidth=1,
             griddash='dot',
             tickfont=dict(
-                color=SPOTIFY_COLORS['text'],
+                color='#FFFFFF',
                 size=12,
                 family="Arial, sans-serif"
             ),
             showline=True,
-            linecolor=SPOTIFY_COLORS['border'],
+            linecolor='#333333',
             linewidth=1,
             title_font=dict(
-                color=SPOTIFY_COLORS['text'],
+                color='#FFFFFF',
                 size=14,
                 family="Arial, sans-serif"
             )
         ),
         yaxis=dict(
-            gridcolor=SPOTIFY_COLORS['border'],
+            gridcolor='#333333',
             gridwidth=1,
             griddash='dot',
             tickfont=dict(
-                color=SPOTIFY_COLORS['text'],
+                color='#FFFFFF',
                 size=12,
                 family="Arial, sans-serif"
             ),
             showline=True,
-            linecolor=SPOTIFY_COLORS['border'],
+            linecolor='#333333',
             linewidth=1,
             title_font=dict(
-                color=SPOTIFY_COLORS['text'],
+                color='#FFFFFF',
                 size=14,
                 family="Arial, sans-serif"
             )
         ),
-        hoverlabel=dict(
-            bgcolor=SPOTIFY_COLORS['surface'],
-            font_size=12,
-            font_family="Arial, sans-serif",
-            font_color=SPOTIFY_COLORS['text'],
-            bordercolor=SPOTIFY_COLORS['border']
-        ),
-        margin=dict(t=80, r=40, b=40, l=40)
+        margin=dict(t=50, r=30, b=50, l=30)
     )
     return fig
 
-# Add custom template for plotly
-pio.templates["spotify"] = go.layout.Template(
+# Custom template for plotly
+pio.templates["spotify_dark"] = go.layout.Template(
     layout=dict(
         font=dict(family="Arial, sans-serif"),
-        plot_bgcolor=SPOTIFY_COLORS['surface'],
-        paper_bgcolor=SPOTIFY_COLORS['surface'],
-        colorway=[SPOTIFY_COLORS['primary'], '#FF1B1C', '#4A90E2', '#FFD700', 
-                 '#FF8C00', '#9B59B6', '#00CED1', '#FF69B4', '#2ECC71', '#FFA500']
+        plot_bgcolor='#191414',
+        paper_bgcolor='#191414',
+        colorway=['#1DB954', '#FF1B1C', '#4A90E2', '#FFD700', 
+                 '#FF8C00', '#9B59B6', '#00CED1', '#FF69B4']
     )
 )
-pio.templates.default = "spotify"
+pio.templates.default = "spotify_dark"
 
 # Load and preprocess data
 @st.cache_data
@@ -867,4 +736,16 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True
-) 
+)
+
+# Function to style dataframes without matplotlib dependency
+def style_df(df):
+    return df.style.set_properties(**{
+        'background-color': '#191414',
+        'color': '#FFFFFF',
+        'border': '1px solid #333333'
+    }).format(precision=2)
+
+# When displaying dataframes, use the custom styling function
+# Replace st.dataframe(df) with:
+# st.dataframe(style_df(df)) 
