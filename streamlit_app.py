@@ -225,6 +225,14 @@ def update_plot_theme(fig):
     )
     return fig
 
+# Function to style dataframes without matplotlib dependency
+def style_df(df):
+    return df.style.set_properties(**{
+        'background-color': '#191414',
+        'color': '#FFFFFF',
+        'border': '1px solid #333333'
+    }).format(precision=2)
+
 # Custom template for plotly
 pio.templates["spotify_dark"] = go.layout.Template(
     layout=dict(
@@ -737,12 +745,4 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True
-)
-
-# Function to style dataframes without matplotlib dependency
-def style_df(df):
-    return df.style.set_properties(**{
-        'background-color': '#191414',
-        'color': '#FFFFFF',
-        'border': '1px solid #333333'
-    }).format(precision=2) 
+) 
