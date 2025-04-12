@@ -366,12 +366,13 @@ with tabs[0]:
     with st.container():
         st.markdown("""
         <div style='
-            background-color: #F8F9FA;
+            background-color: #191414;
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
+            border: 1px solid #333333;
         '>
-            <h4 style='color: #191414; margin-bottom: 15px;'>Filter Options</h4>
+            <h4 style='color: #1DB954; margin-bottom: 15px;'>Filter Options</h4>
         """, unsafe_allow_html=True)
         
         col1, col2 = st.columns([2, 1])
