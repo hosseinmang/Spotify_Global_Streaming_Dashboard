@@ -250,7 +250,6 @@ pio.templates.default = "spotify_dark"
 def load_data():
     try:
         df = pd.read_csv('Spotify_2024_Global_Streaming_Data.csv')
-        st.sidebar.success("✅ Data loaded successfully!")
         return df
     except Exception as e:
         st.sidebar.error(f"❌ Error loading data: {str(e)}")
@@ -292,7 +291,6 @@ def initialize_model():
         model = RandomForestRegressor(n_estimators=100, random_state=42)
         model.fit(X, y)
         
-        st.sidebar.success("✅ Model initialized successfully!")
         return model, country_le, artist_le, genre_le
     except Exception as e:
         st.sidebar.error(f"❌ Error initializing model: {str(e)}")
