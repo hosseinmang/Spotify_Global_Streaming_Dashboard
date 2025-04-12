@@ -412,32 +412,13 @@ with tabs[0]:
             marker=dict(size=8)
         )
         
+        update_plot_theme(fig)
         fig.update_layout(
-            plot_bgcolor='#FFFFFF',
-            paper_bgcolor='#FFFFFF',
-            font_color='#191414',
             title=dict(
                 text=f"{metric_option} by Genre Over Time",
-                font=dict(size=24, color='#191414'),
+                font=dict(size=24, color='#FFFFFF'),
                 x=0.5,
                 y=0.95
-            ),
-            legend=dict(
-                bgcolor='#FFFFFF',
-                bordercolor='#E5E5E5',
-                borderwidth=1
-            ),
-            xaxis=dict(
-                gridcolor='#E5E5E5',
-                showline=True,
-                linecolor='#E5E5E5',
-                title_font=dict(size=14)
-            ),
-            yaxis=dict(
-                gridcolor='#E5E5E5',
-                showline=True,
-                linecolor='#E5E5E5',
-                title_font=dict(size=14)
             ),
             margin=dict(t=80, b=40, l=40, r=40)
         )
@@ -445,7 +426,7 @@ with tabs[0]:
         st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
         
         # Summary statistics with modern cards
-        st.subheader("Key Metrics")
+        st.markdown("<h2 style='color: #1DB954; margin-bottom: 1rem;'>Key Metrics</h2>", unsafe_allow_html=True)
         
         metrics_container = st.container()
         with metrics_container:
