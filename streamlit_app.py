@@ -348,7 +348,7 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 # Main content with modern layout
-st.title("🎵 Spotify Global Streaming Analytics")
+st.markdown("<h1 style='color: #1DB954; text-align: center;'>🎵 Spotify Global Streaming Analytics</h1>", unsafe_allow_html=True)
 
 # Create modern tabs
 tabs = st.tabs([
@@ -372,7 +372,7 @@ with tabs[0]:
             margin-bottom: 20px;
             border: 1px solid #333333;
         '>
-            <h4 style='color: #1DB954; margin-bottom: 15px;'>Filter Options</h4>
+            <h4 style='color: #FFFFFF; margin-bottom: 15px;'>Filter Options</h4>
         """, unsafe_allow_html=True)
         
         col1, col2 = st.columns([2, 1])
