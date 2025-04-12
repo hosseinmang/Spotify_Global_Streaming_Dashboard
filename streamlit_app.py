@@ -15,130 +15,143 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS with improved readability
+# Custom CSS with modern design
 st.markdown("""
 <style>
-    /* Main app background and text */
+    /* Main app styling */
     .stApp {
-        background-color: #FFFFFF !important;
+        background-color: #FAFAFA !important;
     }
     
     /* Main title */
     .main .block-container h1 {
-        color: #1DB954 !important;
-        font-weight: 600 !important;
-        font-size: 48px !important;
+        color: #191414 !important;
+        font-weight: 700 !important;
+        font-size: 42px !important;
         text-align: center !important;
-        padding-bottom: 2rem !important;
+        padding: 1.5rem 0 !important;
+        margin-bottom: 2rem !important;
+        border-bottom: 3px solid #1DB954 !important;
     }
     
     /* Section headers */
-    .main .block-container h2,
-    .main .block-container h3,
-    .main .block-container h4 {
-        color: #1DB954 !important;
+    .main .block-container h2 {
+        color: #191414 !important;
+        font-weight: 600 !important;
+        font-size: 32px !important;
+        margin: 1rem 0 !important;
+        padding-left: 1rem !important;
+        border-left: 4px solid #1DB954 !important;
+    }
+    
+    .main .block-container h3 {
+        color: #191414 !important;
         font-weight: 500 !important;
-        font-size: 28px !important;
-        margin-bottom: 1rem !important;
-    }
-    
-    /* Plotly chart styling */
-    .js-plotly-plot .plotly .main-svg {
-        background-color: #FFFFFF !important;
-    }
-    
-    .js-plotly-plot .plotly .bg {
-        fill: #FFFFFF !important;
-    }
-    
-    /* Chart text */
-    .js-plotly-plot .plotly .gtitle {
-        fill: #191414 !important;
         font-size: 24px !important;
-        font-weight: 500 !important;
+        margin: 0.5rem 0 !important;
     }
     
-    .js-plotly-plot .plotly .xtick text,
-    .js-plotly-plot .plotly .ytick text {
-        fill: #191414 !important;
-        font-size: 12px !important;
+    /* Card styling */
+    div[data-testid="stVerticalBlock"] > div {
+        background-color: #FFFFFF;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1rem;
     }
     
-    /* Grid lines */
-    .js-plotly-plot .plotly .gridlayer path {
-        stroke: #E5E5E5 !important;
-        stroke-opacity: 0.5 !important;
+    /* Metric styling */
+    div[data-testid="metric-container"] {
+        background-color: #FFFFFF;
+        border: 1px solid #E5E5E5;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
     }
     
-    /* Axis lines */
-    .js-plotly-plot .plotly .xaxis .zerolinelayer path,
-    .js-plotly-plot .plotly .yaxis .zerolinelayer path {
-        stroke: #535353 !important;
-        stroke-width: 1 !important;
+    div[data-testid="metric-container"] label {
+        color: #666666 !important;
+    }
+    
+    div[data-testid="metric-container"] div[data-testid="metric-value"] {
+        color: #1DB954 !important;
+        font-weight: 600 !important;
     }
     
     /* Tabs styling */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
+        gap: 16px;
         background-color: #FFFFFF;
-        padding: 0;
-        border-radius: 0;
+        padding: 16px 24px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
     }
     
     .stTabs [data-baseweb="tab"] {
         height: 50px;
-        white-space: pre-wrap;
-        background-color: #FFFFFF;
-        border-radius: 0;
-        padding: 10px 20px;
-        color: #191414;
+        background-color: transparent;
+        border: none;
+        color: #666666;
         font-weight: 500;
+        padding: 8px 24px;
+        border-radius: 25px;
+        transition: all 0.3s ease;
     }
     
     .stTabs [aria-selected="true"] {
-        background-color: #FFFFFF !important;
-        color: #1DB954 !important;
+        background-color: #1DB954 !important;
+        color: #FFFFFF !important;
         font-weight: 600;
-        border-bottom: 2px solid #1DB954 !important;
     }
     
-    /* Inputs and selectboxes */
+    /* Input fields styling */
     .stSelectbox [data-baseweb="select"],
     .stNumberInput [data-baseweb="input"],
     .stMultiSelect [data-baseweb="select"] {
-        background-color: #FFFFFF !important;
-        color: #191414 !important;
-        border: 1px solid #E5E5E5 !important;
+        background-color: #FFFFFF;
+        border: 2px solid #E5E5E5;
+        border-radius: 8px;
+        transition: all 0.3s ease;
     }
     
-    /* Sidebar */
+    .stSelectbox [data-baseweb="select"]:hover,
+    .stNumberInput [data-baseweb="input"]:hover,
+    .stMultiSelect [data-baseweb="select"]:hover {
+        border-color: #1DB954;
+    }
+    
+    /* Button styling */
+    .stButton > button {
+        background-color: #1DB954;
+        color: #FFFFFF;
+        font-weight: 600;
+        padding: 0.5rem 2rem;
+        border-radius: 25px;
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    .stButton > button:hover {
+        background-color: #1ed760;
+        box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+    }
+    
+    /* Sidebar styling */
     [data-testid="stSidebar"] {
-        background-color: #FFFFFF !important;
-        border-right: 1px solid #E5E5E5 !important;
+        background-color: #FFFFFF;
+        border-right: 1px solid #E5E5E5;
+        padding: 2rem 1rem;
     }
     
     [data-testid="stSidebar"] .block-container {
-        padding-top: 2rem !important;
-    }
-    
-    /* Text elements */
-    .stMarkdown,
-    .stText,
-    p, div, span {
-        color: #191414 !important;
+        margin-top: 2rem;
     }
     
     /* Hide Streamlit branding */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     div[data-testid="stToolbar"] {visibility: hidden;}
-    
-    /* Tooltip styling */
-    .plotly .tooltip {
-        background-color: #FFFFFF !important;
-        color: #191414 !important;
-        border: 1px solid #1DB954 !important;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -273,105 +286,180 @@ if None in (model, country_le, artist_le, genre_le):
     st.error("Failed to initialize the model. Please check the error messages in the sidebar.")
     st.stop()
 
-# Sidebar
+# Sidebar with modern design
 with st.sidebar:
-    st.image("https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png", width=200)
+    st.image("https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_Green.png", width=180)
     st.markdown("---")
-    st.markdown("### About")
+    
     st.markdown("""
-    This dashboard analyzes Spotify's global streaming data and provides insights into:
-    - Streaming trends by genre
-    - Top performing artists
-    - Geographic distribution
-    - Stream predictions
-    """)
+    <div style='
+        background-color: #F8F9FA;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 10px 0;
+    '>
+        <h4 style='color: #191414; margin-bottom: 10px;'>About</h4>
+        <p style='color: #666666; font-size: 14px; line-height: 1.6;'>
+            Explore Spotify's global streaming insights through:
+        </p>
+        <ul style='color: #666666; font-size: 14px; line-height: 1.6; padding-left: 20px;'>
+            <li>Streaming trends analysis</li>
+            <li>Top artist performance</li>
+            <li>Geographic distribution</li>
+            <li>AI-powered predictions</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+    
     st.markdown("---")
-    st.markdown("### Data Last Updated")
-    st.markdown(f"_{datetime.now().strftime('%B %d, %Y')}_")
+    
+    st.markdown(f"""
+    <div style='
+        background-color: #F8F9FA;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+    '>
+        <p style='color: #666666; font-size: 12px; margin: 0;'>
+            Last Updated<br>
+            <span style='color: #1DB954; font-weight: 500;'>
+                {datetime.now().strftime('%B %d, %Y')}
+            </span>
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
-# Main content
+# Main content with modern layout
 st.title("🎵 Spotify Global Streaming Analytics")
 
-# Create tabs
-tab1, tab2, tab3, tab4 = st.tabs([
-    "📈 Global Trends", 
-    "🎤 Top Artists", 
-    "🌍 Geographic Distribution",
-    "🔮 Stream Predictor"
+# Create modern tabs
+tabs = st.tabs([
+    "📈  Trends",
+    "🎤  Artists",
+    "🌍  Geography",
+    "🔮  Predictor"
 ])
 
 # Tab 1: Global Trends
-with tab1:
+with tabs[0]:
     st.header("Global Streaming Trends")
     
-    # Time period selector
-    col1, col2 = st.columns([2, 1])
-    with col1:
-        selected_genres = st.multiselect(
-            "Select Genres to Display",
-            options=sorted(df['Genre'].unique()),
-            default=sorted(df['Genre'].unique())[:5]
+    # Modern filter section
+    with st.container():
+        st.markdown("""
+        <div style='
+            background-color: #F8F9FA;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        '>
+            <h4 style='color: #191414; margin-bottom: 15px;'>Filter Options</h4>
+        """, unsafe_allow_html=True)
+        
+        col1, col2 = st.columns([2, 1])
+        with col1:
+            selected_genres = st.multiselect(
+                "Select Genres",
+                options=sorted(df['Genre'].unique()),
+                default=sorted(df['Genre'].unique())[:5]
+            )
+        
+        with col2:
+            metric_option = st.selectbox(
+                "Metric",
+                ["Total Streams (Millions)", "Monthly Listeners (Millions)", "Skip Rate (%)"]
+            )
+        
+        st.markdown("</div>", unsafe_allow_html=True)
+    
+    # Create visualization with enhanced styling
+    if selected_genres:
+        genre_year_data = df[df['Genre'].isin(selected_genres)].groupby(
+            ['Genre', 'Release Year']
+        )[metric_option].mean().reset_index()
+        
+        fig = px.line(
+            genre_year_data,
+            x='Release Year',
+            y=metric_option,
+            color='Genre',
+            template="none",
+            color_discrete_map=GENRE_COLORS
         )
-    
-    with col2:
-        metric_option = st.selectbox(
-            "Select Metric",
-            ["Total Streams (Millions)", "Monthly Listeners (Millions)", "Skip Rate (%)"]
+        
+        fig.update_traces(
+            line=dict(width=3),
+            mode='lines+markers',
+            marker=dict(size=8)
         )
-    
-    # Filter data
-    genre_year_data = df[df['Genre'].isin(selected_genres)].groupby(
-        ['Genre', 'Release Year']
-    )[metric_option].mean().reset_index()
-    
-    # Create visualization
-    fig = px.line(
-        genre_year_data,
-        x='Release Year',
-        y=metric_option,
-        color='Genre',
-        template="none",
-        color_discrete_map=GENRE_COLORS,
-        line_shape='linear',
-        render_mode='svg'
-    )
-    
-    update_plot_theme(fig)
-    fig.update_traces(
-        line=dict(width=3),
-        mode='lines+markers',
-        marker=dict(size=8)
-    )
-    fig.update_layout(
-        title=dict(
-            text=f"{metric_option} by Genre Over Time",
-            font=dict(size=24, color='#191414'),
-            x=0.5,
-            y=0.95
-        ),
-        margin=dict(t=100, b=50, l=50, r=50)
-    )
-    
-    st.plotly_chart(fig, use_container_width=True)
-    
-    # Summary statistics
-    st.subheader("Summary Statistics")
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        avg_streams = df[df['Genre'].isin(selected_genres)]['Total Streams (Millions)'].mean()
-        st.metric("Average Streams (M)", f"{avg_streams:.1f}")
-    
-    with col2:
-        avg_listeners = df[df['Genre'].isin(selected_genres)]['Monthly Listeners (Millions)'].mean()
-        st.metric("Average Monthly Listeners (M)", f"{avg_listeners:.1f}")
-    
-    with col3:
-        avg_skip = df[df['Genre'].isin(selected_genres)]['Skip Rate (%)'].mean()
-        st.metric("Average Skip Rate", f"{avg_skip:.1f}%")
+        
+        fig.update_layout(
+            plot_bgcolor='#FFFFFF',
+            paper_bgcolor='#FFFFFF',
+            font_color='#191414',
+            title=dict(
+                text=f"{metric_option} by Genre Over Time",
+                font=dict(size=24, color='#191414'),
+                x=0.5,
+                y=0.95
+            ),
+            legend=dict(
+                bgcolor='#FFFFFF',
+                bordercolor='#E5E5E5',
+                borderwidth=1
+            ),
+            xaxis=dict(
+                gridcolor='#E5E5E5',
+                showline=True,
+                linecolor='#E5E5E5',
+                title_font=dict(size=14)
+            ),
+            yaxis=dict(
+                gridcolor='#E5E5E5',
+                showline=True,
+                linecolor='#E5E5E5',
+                title_font=dict(size=14)
+            ),
+            margin=dict(t=80, b=40, l=40, r=40)
+        )
+        
+        st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+        
+        # Summary statistics with modern cards
+        st.subheader("Key Metrics")
+        
+        metrics_container = st.container()
+        with metrics_container:
+            col1, col2, col3 = st.columns(3)
+            
+            with col1:
+                avg_streams = df[df['Genre'].isin(selected_genres)]['Total Streams (Millions)'].mean()
+                st.metric(
+                    "Average Streams",
+                    f"{avg_streams:.1f}M",
+                    delta=None
+                )
+            
+            with col2:
+                avg_listeners = df[df['Genre'].isin(selected_genres)]['Monthly Listeners (Millions)'].mean()
+                st.metric(
+                    "Monthly Listeners",
+                    f"{avg_listeners:.1f}M",
+                    delta=None
+                )
+            
+            with col3:
+                avg_skip = df[df['Genre'].isin(selected_genres)]['Skip Rate (%)'].mean()
+                st.metric(
+                    "Skip Rate",
+                    f"{avg_skip:.1f}%",
+                    delta=None
+                )
+    else:
+        st.warning("Please select at least one genre to display the trends.")
 
 # Tab 2: Top Artists
-with tab2:
+with tabs[1]:
     st.header("Top Artists Analysis")
     
     metric = st.selectbox(
@@ -422,7 +510,7 @@ with tab2:
         )
 
 # Tab 3: Geographic Distribution
-with tab3:
+with tabs[2]:
     st.header("Geographic Distribution")
     
     metric = st.selectbox(
@@ -486,7 +574,7 @@ with tab3:
         st.dataframe(country_data.nsmallest(5, metric))
 
 # Tab 4: Stream Predictor
-with tab4:
+with tabs[3]:
     st.header("Stream Predictor")
     st.write("Predict potential streams based on various factors:")
     
@@ -620,20 +708,20 @@ with tab4:
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
 
-# Footer
+# Footer with modern design
 st.markdown("---")
 st.markdown(
     f"""
     <div style='
         text-align: center;
         padding: 20px;
-        background-color: {SPOTIFY_COLORS['surface']};
+        background-color: #F8F9FA;
         border-radius: 10px;
         margin-top: 30px;
     '>
-        <p style='color: {SPOTIFY_COLORS['text']}; margin: 0;'>
-            Created by <a href='https://github.com/hosseinmang'>@hosseinmang</a> | 
-            Data source: Spotify Global Streaming Data 2024
+        <p style='color: #666666; font-size: 14px; margin: 0;'>
+            Developed by <a href='https://github.com/hosseinmang' style='color: #1DB954; text-decoration: none;'>@hosseinmang</a> | 
+            Data: Spotify Global Streaming 2024
         </p>
     </div>
     """,
