@@ -155,18 +155,18 @@ SPOTIFY_COLORS = {
     'warning': '#FF5722'        # Warning orange
 }
 
-# Color palette for genres
+# Color palette for genres with more distinct colors
 GENRE_COLORS = {
     'Pop': '#1DB954',      # Spotify green
-    'Hip Hop': '#1ed760',  # Lighter green
-    'R&B': '#535353',      # Gray
-    'Rock': '#282828',     # Dark gray
-    'Jazz': '#4687d6',     # Blue
-    'Classical': '#ff6437', # Orange
-    'EDM': '#ff5722',      # Deep orange
-    'K-pop': '#8c1932',    # Red
-    'Indie': '#af2896',    # Purple
-    'Reggaeton': '#148a08' # Dark green
+    'Hip Hop': '#FF6B6B',  # Coral red
+    'R&B': '#4A90E2',      # Blue
+    'Rock': '#FFD93D',     # Yellow
+    'Jazz': '#FF8C42',     # Orange
+    'Classical': '#6C5B7B', # Purple
+    'EDM': '#45B7D1',      # Cyan
+    'K-pop': '#FF4081',    # Pink
+    'Indie': '#2ECC71',    # Emerald
+    'Reggaeton': '#F39C12' # Golden
 }
 
 # Update all plot layouts to use the new theme
@@ -193,7 +193,8 @@ def update_plot_theme(fig):
             tickfont=dict(color='#191414'),
             showline=True,
             linecolor='#535353',
-            linewidth=1
+            linewidth=1,
+            title_font=dict(color='#191414', size=14)
         ),
         yaxis=dict(
             gridcolor='#E5E5E5',
@@ -202,7 +203,13 @@ def update_plot_theme(fig):
             tickfont=dict(color='#191414'),
             showline=True,
             linecolor='#535353',
-            linewidth=1
+            linewidth=1,
+            title_font=dict(color='#191414', size=14)
+        ),
+        hoverlabel=dict(
+            bgcolor='#FFFFFF',
+            font_size=14,
+            font_color='#191414'
         )
     )
     return fig
@@ -323,11 +330,18 @@ with tab1:
         x='Release Year',
         y=metric_option,
         color='Genre',
-        template="none"  # Use none template to apply our custom theme
+        template="none",
+        color_discrete_map=GENRE_COLORS,
+        line_shape='linear',
+        render_mode='svg'
     )
     
-    # Apply theme
     update_plot_theme(fig)
+    fig.update_traces(
+        line=dict(width=3),
+        mode='lines+markers',
+        marker=dict(size=8)
+    )
     fig.update_layout(
         title=dict(
             text=f"{metric_option} by Genre Over Time",
@@ -374,11 +388,17 @@ with tab2:
         x='Artist',
         y=metric,
         color='Genre',
-        template="none"
+        template="none",
+        color_discrete_map=GENRE_COLORS,
+        barmode='group'
     )
     
-    # Apply theme
     update_plot_theme(fig)
+    fig.update_traces(
+        marker_line_color='#FFFFFF',
+        marker_line_width=1.5,
+        opacity=0.8
+    )
     fig.update_layout(
         title=dict(
             text=f"Top {top_n} Artists by {metric}",
@@ -387,7 +407,8 @@ with tab2:
             y=0.95
         ),
         xaxis_tickangle=45,
-        margin=dict(t=100, b=100, l=50, r=50)
+        margin=dict(t=100, b=100, l=50, r=50),
+        showlegend=True
     )
     
     st.plotly_chart(fig, use_container_width=True)
@@ -418,11 +439,10 @@ with tab3:
         locations='Country',
         locationmode='country names',
         color=metric,
-        color_continuous_scale=['#E5E5E5', '#1DB954'],
+        color_continuous_scale=[[0, '#E5E5E5'], [0.5, '#9BE5B9'], [1, '#1DB954']],
         template="none"
     )
     
-    # Apply theme
     update_plot_theme(fig)
     fig.update_layout(
         title=dict(
@@ -440,7 +460,14 @@ with tab3:
             lakecolor='#FFFFFF',
             landcolor='#F8F8F8',
             coastlinecolor='#535353',
-            countrycolor='#E5E5E5'
+            countrycolor='#E5E5E5',
+            showocean=True,
+            oceancolor='#FFFFFF'
+        ),
+        coloraxis_colorbar=dict(
+            title=metric,
+            tickfont=dict(color='#191414'),
+            titlefont=dict(color='#191414')
         )
     )
     
@@ -567,11 +594,16 @@ with tab4:
                 x='Importance',
                 y='Feature',
                 orientation='h',
-                template="none"
+                template="none",
+                color_discrete_sequence=['#1DB954']
             )
             
-            # Apply theme
             update_plot_theme(fig)
+            fig.update_traces(
+                marker_line_color='#FFFFFF',
+                marker_line_width=1,
+                opacity=0.8
+            )
             fig.update_layout(
                 title=dict(
                     text="Feature Importance in Prediction",
@@ -579,7 +611,8 @@ with tab4:
                     x=0.5,
                     y=0.95
                 ),
-                margin=dict(t=100, b=50, l=150, r=50)
+                margin=dict(t=100, b=50, l=150, r=50),
+                showlegend=False
             )
             
             st.plotly_chart(fig, use_container_width=True)
