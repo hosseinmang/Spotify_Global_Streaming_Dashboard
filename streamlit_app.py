@@ -500,7 +500,7 @@ with tabs[1]:
     fig.update_layout(
         title=dict(
             text=f"Top {top_n} Artists by {metric}",
-            font=dict(size=24, color='#191414'),
+            font=dict(size=24),
             x=0.5,
             y=0.95
         ),
@@ -511,12 +511,13 @@ with tabs[1]:
     
     st.plotly_chart(fig, use_container_width=True)
     
-    # Artist details
+    # Artist details with custom styling
     if st.checkbox("Show Detailed Artist Statistics"):
+        artist_details = top_artists[['Artist', 'Genre', 'Monthly Listeners (Millions)', 
+                                    'Total Streams (Millions)', 'Skip Rate (%)']]
         st.dataframe(
-            top_artists[['Artist', 'Genre', 'Monthly Listeners (Millions)', 
-                        'Total Streams (Millions)', 'Skip Rate (%)']]
-            .style.background_gradient(cmap='Greens')
+            style_df(artist_details),
+            use_container_width=True
         )
 
 # Tab 3: Geographic Distribution
@@ -744,8 +745,4 @@ def style_df(df):
         'background-color': '#191414',
         'color': '#FFFFFF',
         'border': '1px solid #333333'
-    }).format(precision=2)
-
-# When displaying dataframes, use the custom styling function
-# Replace st.dataframe(df) with:
-# st.dataframe(style_df(df)) 
+    }).format(precision=2) 
