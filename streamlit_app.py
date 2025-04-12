@@ -169,6 +169,44 @@ GENRE_COLORS = {
     'Reggaeton': '#148a08' # Dark green
 }
 
+# Update all plot layouts to use the new theme
+def update_plot_theme(fig):
+    fig.update_layout(
+        plot_bgcolor='#FFFFFF',
+        paper_bgcolor='#FFFFFF',
+        font_color='#191414',
+        title=dict(
+            font=dict(color='#191414', size=24),
+            x=0.5,
+            y=0.95
+        ),
+        legend=dict(
+            bgcolor='#FFFFFF',
+            font=dict(color='#191414'),
+            bordercolor='#E5E5E5',
+            borderwidth=1
+        ),
+        xaxis=dict(
+            gridcolor='#E5E5E5',
+            gridwidth=1,
+            griddash='dot',
+            tickfont=dict(color='#191414'),
+            showline=True,
+            linecolor='#535353',
+            linewidth=1
+        ),
+        yaxis=dict(
+            gridcolor='#E5E5E5',
+            gridwidth=1,
+            griddash='dot',
+            tickfont=dict(color='#191414'),
+            showline=True,
+            linecolor='#535353',
+            linewidth=1
+        )
+    )
+    return fig
+
 # Load and preprocess data
 @st.cache_data
 def load_data():
@@ -567,42 +605,4 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True
-)
-
-# Update all plot layouts to use the new theme
-def update_plot_theme(fig):
-    fig.update_layout(
-        plot_bgcolor='#FFFFFF',
-        paper_bgcolor='#FFFFFF',
-        font_color='#191414',
-        title=dict(
-            font=dict(color='#191414', size=24),
-            x=0.5,
-            y=0.95
-        ),
-        legend=dict(
-            bgcolor='#FFFFFF',
-            font=dict(color='#191414'),
-            bordercolor='#E5E5E5',
-            borderwidth=1
-        ),
-        xaxis=dict(
-            gridcolor='#E5E5E5',
-            gridwidth=1,
-            griddash='dot',
-            tickfont=dict(color='#191414'),
-            showline=True,
-            linecolor='#535353',
-            linewidth=1
-        ),
-        yaxis=dict(
-            gridcolor='#E5E5E5',
-            gridwidth=1,
-            griddash='dot',
-            tickfont=dict(color='#191414'),
-            showline=True,
-            linecolor='#535353',
-            linewidth=1
-        )
-    )
-    return fig 
+) 
