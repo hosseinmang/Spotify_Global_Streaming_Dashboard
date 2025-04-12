@@ -311,16 +311,17 @@ with st.sidebar:
     
     st.markdown("""
     <div style='
-        background-color: #F8F9FA;
+        background-color: #191414;
         padding: 20px;
         border-radius: 10px;
         margin: 10px 0;
+        border: 1px solid #333333;
     '>
-        <h4 style='color: #191414; margin-bottom: 10px;'>About</h4>
-        <p style='color: #666666; font-size: 14px; line-height: 1.6;'>
+        <h4 style='color: #1DB954; margin-bottom: 10px;'>About</h4>
+        <p style='color: #FFFFFF; font-size: 14px; line-height: 1.6;'>
             Explore Spotify's global streaming insights through:
         </p>
-        <ul style='color: #666666; font-size: 14px; line-height: 1.6; padding-left: 20px;'>
+        <ul style='color: #FFFFFF; font-size: 14px; line-height: 1.6; padding-left: 20px;'>
             <li>Streaming trends analysis</li>
             <li>Top artist performance</li>
             <li>Geographic distribution</li>
@@ -333,12 +334,13 @@ with st.sidebar:
     
     st.markdown(f"""
     <div style='
-        background-color: #F8F9FA;
+        background-color: #191414;
         padding: 15px;
         border-radius: 10px;
         text-align: center;
+        border: 1px solid #333333;
     '>
-        <p style='color: #666666; font-size: 12px; margin: 0;'>
+        <p style='color: #FFFFFF; font-size: 12px; margin: 0;'>
             Last Updated<br>
             <span style='color: #1DB954; font-weight: 500;'>
                 {datetime.now().strftime('%B %d, %Y')}
@@ -727,4 +729,4 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True
-) 
+)
