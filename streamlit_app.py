@@ -528,7 +528,7 @@ with tabs[2]:
         locations='Country',
         locationmode='country names',
         color=metric,
-        color_continuous_scale=[[0, '#E5E5E5'], [0.5, '#9BE5B9'], [1, '#1DB954']],
+        color_continuous_scale=[[0, '#191414'], [0.5, '#1DB954'], [1, '#1ED760']],
         template="none"
     )
     
@@ -536,28 +536,34 @@ with tabs[2]:
     fig.update_layout(
         title=dict(
             text=f"Global Distribution of {metric}",
-            font=dict(size=24, color='#191414'),
+            font=dict(size=24, color='#FFFFFF'),
             x=0.5,
             y=0.95
         ),
         margin=dict(t=100, b=50, l=50, r=50),
         geo=dict(
-            showframe=False,
+            showframe=True,
             showcoastlines=True,
             projection_type='equirectangular',
-            bgcolor='#FFFFFF',
-            lakecolor='#FFFFFF',
-            landcolor='#F8F8F8',
-            coastlinecolor='#535353',
-            countrycolor='#E5E5E5',
+            bgcolor='#191414',
+            lakecolor='#191414',
+            landcolor='#191414',
+            coastlinecolor='#FFFFFF',
+            countrycolor='#FFFFFF',
             showocean=True,
-            oceancolor='#FFFFFF'
+            oceancolor='#191414',
+            countrywidth=0.5,
+            coastlinewidth=0.5,
+            framecolor='#FFFFFF',
+            framewidth=1
         ),
         coloraxis_colorbar=dict(
             title=metric,
-            tickfont=dict(color='#191414'),
-            titlefont=dict(color='#191414')
-        )
+            tickfont=dict(color='#FFFFFF'),
+            titlefont=dict(color='#FFFFFF')
+        ),
+        paper_bgcolor='#191414',
+        plot_bgcolor='#191414'
     )
     
     st.plotly_chart(fig, use_container_width=True)
