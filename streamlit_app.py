@@ -20,12 +20,12 @@ st.markdown("""
 <style>
     /* Main app styling */
     .stApp {
-        background-color: #FAFAFA !important;
+        background-color: #191414 !important;
     }
     
     /* Main title */
     .main .block-container h1 {
-        color: #191414 !important;
+        color: #FFFFFF !important;
         font-weight: 700 !important;
         font-size: 42px !important;
         text-align: center !important;
@@ -36,7 +36,7 @@ st.markdown("""
     
     /* Section headers */
     .main .block-container h2 {
-        color: #191414 !important;
+        color: #FFFFFF !important;
         font-weight: 600 !important;
         font-size: 32px !important;
         margin: 1rem 0 !important;
@@ -45,7 +45,7 @@ st.markdown("""
     }
     
     .main .block-container h3 {
-        color: #191414 !important;
+        color: #FFFFFF !important;
         font-weight: 500 !important;
         font-size: 24px !important;
         margin: 0.5rem 0 !important;
@@ -53,24 +53,25 @@ st.markdown("""
     
     /* Card styling */
     div[data-testid="stVerticalBlock"] > div {
-        background-color: #FFFFFF;
+        background-color: #282828;
         padding: 1.5rem;
         border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         margin-bottom: 1rem;
+        border: 1px solid #333333;
     }
     
     /* Metric styling */
     div[data-testid="metric-container"] {
-        background-color: #FFFFFF;
-        border: 1px solid #E5E5E5;
+        background-color: #282828;
+        border: 1px solid #333333;
         border-radius: 8px;
         padding: 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     
     div[data-testid="metric-container"] label {
-        color: #666666 !important;
+        color: #B3B3B3 !important;
     }
     
     div[data-testid="metric-container"] div[data-testid="metric-value"] {
@@ -81,18 +82,19 @@ st.markdown("""
     /* Tabs styling */
     .stTabs [data-baseweb="tab-list"] {
         gap: 16px;
-        background-color: #FFFFFF;
+        background-color: #282828;
         padding: 16px 24px;
         border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         margin-bottom: 2rem;
+        border: 1px solid #333333;
     }
     
     .stTabs [data-baseweb="tab"] {
         height: 50px;
         background-color: transparent;
         border: none;
-        color: #666666;
+        color: #B3B3B3;
         font-weight: 500;
         padding: 8px 24px;
         border-radius: 25px;
@@ -109,10 +111,11 @@ st.markdown("""
     .stSelectbox [data-baseweb="select"],
     .stNumberInput [data-baseweb="input"],
     .stMultiSelect [data-baseweb="select"] {
-        background-color: #FFFFFF;
-        border: 2px solid #E5E5E5;
+        background-color: #282828;
+        border: 2px solid #333333;
         border-radius: 8px;
         transition: all 0.3s ease;
+        color: #FFFFFF;
     }
     
     .stSelectbox [data-baseweb="select"]:hover,
@@ -139,13 +142,24 @@ st.markdown("""
     
     /* Sidebar styling */
     [data-testid="stSidebar"] {
-        background-color: #FFFFFF;
-        border-right: 1px solid #E5E5E5;
+        background-color: #282828;
+        border-right: 1px solid #333333;
         padding: 2rem 1rem;
     }
     
     [data-testid="stSidebar"] .block-container {
         margin-top: 2rem;
+    }
+    
+    /* Text color for all elements */
+    .stMarkdown, .stText, p, span {
+        color: #FFFFFF !important;
+    }
+    
+    /* Dataframe styling */
+    .dataframe {
+        background-color: #282828 !important;
+        color: #FFFFFF !important;
     }
     
     /* Hide Streamlit branding */
@@ -157,72 +171,73 @@ st.markdown("""
 
 # Update Spotify colors with additional shades
 SPOTIFY_COLORS = {
-    'background': '#FFFFFF',     # White background
-    'primary': '#1DB954',       # Spotify green
-    'primary_light': '#1ed760', # Lighter green
-    'text': '#191414',          # Black text
-    'secondary': '#535353',     # Dark gray
-    'surface': '#F8F8F8',       # Light surface
-    'error': '#E91429',         # Error red
-    'success': '#1DB954',       # Success green
-    'warning': '#FF5722'        # Warning orange
+    'background': '#191414',     # Black background
+    'surface': '#282828',        # Dark surface
+    'primary': '#1DB954',        # Spotify green
+    'primary_light': '#1ed760',  # Lighter green
+    'text': '#FFFFFF',           # White text
+    'text_secondary': '#B3B3B3', # Light gray text
+    'border': '#333333',         # Border color
+    'error': '#E91429',          # Error red
+    'success': '#1DB954',        # Success green
+    'warning': '#FF5722'         # Warning orange
 }
 
-# Color palette for genres with more distinct colors
+# Color palette for genres with brighter, more distinct colors
 GENRE_COLORS = {
     'Pop': '#1DB954',      # Spotify green
-    'Hip Hop': '#FF6B6B',  # Coral red
-    'R&B': '#4A90E2',      # Blue
-    'Rock': '#FFD93D',     # Yellow
-    'Jazz': '#FF8C42',     # Orange
-    'Classical': '#6C5B7B', # Purple
-    'EDM': '#45B7D1',      # Cyan
-    'K-pop': '#FF4081',    # Pink
-    'Indie': '#2ECC71',    # Emerald
-    'Reggaeton': '#F39C12' # Golden
+    'Hip Hop': '#FF1B1C',  # Bright red
+    'R&B': '#4A90E2',      # Bright blue
+    'Rock': '#FFD700',     # Bright yellow
+    'Jazz': '#FF8C00',     # Bright orange
+    'Classical': '#9B59B6', # Bright purple
+    'EDM': '#00CED1',      # Bright cyan
+    'K-pop': '#FF69B4',    # Bright pink
+    'Indie': '#2ECC71',    # Bright emerald
+    'Reggaeton': '#FFA500' # Bright orange
 }
 
-# Update all plot layouts to use the new theme
+# Update plot theme function
 def update_plot_theme(fig):
     fig.update_layout(
-        plot_bgcolor='#FFFFFF',
-        paper_bgcolor='#FFFFFF',
-        font_color='#191414',
+        plot_bgcolor=SPOTIFY_COLORS['surface'],
+        paper_bgcolor=SPOTIFY_COLORS['surface'],
+        font_color=SPOTIFY_COLORS['text'],
         title=dict(
-            font=dict(color='#191414', size=24),
+            font=dict(color=SPOTIFY_COLORS['text'], size=24),
             x=0.5,
             y=0.95
         ),
         legend=dict(
-            bgcolor='#FFFFFF',
-            font=dict(color='#191414'),
-            bordercolor='#E5E5E5',
+            bgcolor=SPOTIFY_COLORS['surface'],
+            font=dict(color=SPOTIFY_COLORS['text']),
+            bordercolor=SPOTIFY_COLORS['border'],
             borderwidth=1
         ),
         xaxis=dict(
-            gridcolor='#E5E5E5',
+            gridcolor=SPOTIFY_COLORS['border'],
             gridwidth=1,
             griddash='dot',
-            tickfont=dict(color='#191414'),
+            tickfont=dict(color=SPOTIFY_COLORS['text']),
             showline=True,
-            linecolor='#535353',
+            linecolor=SPOTIFY_COLORS['border'],
             linewidth=1,
-            title_font=dict(color='#191414', size=14)
+            title_font=dict(color=SPOTIFY_COLORS['text'], size=14)
         ),
         yaxis=dict(
-            gridcolor='#E5E5E5',
+            gridcolor=SPOTIFY_COLORS['border'],
             gridwidth=1,
             griddash='dot',
-            tickfont=dict(color='#191414'),
+            tickfont=dict(color=SPOTIFY_COLORS['text']),
             showline=True,
-            linecolor='#535353',
+            linecolor=SPOTIFY_COLORS['border'],
             linewidth=1,
-            title_font=dict(color='#191414', size=14)
+            title_font=dict(color=SPOTIFY_COLORS['text'], size=14)
         ),
         hoverlabel=dict(
-            bgcolor='#FFFFFF',
+            bgcolor=SPOTIFY_COLORS['surface'],
             font_size=14,
-            font_color='#191414'
+            font_color=SPOTIFY_COLORS['text']
         )
     )
     return fig
