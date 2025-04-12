@@ -20,7 +20,7 @@ st.markdown("""
 <style>
     /* Main app background and text */
     .stApp {
-        background-color: #191414 !important;
+        background-color: #FFFFFF !important;
     }
     
     /* Main title */
@@ -44,30 +44,30 @@ st.markdown("""
     
     /* Plotly chart styling */
     .js-plotly-plot .plotly .main-svg {
-        background-color: #191414 !important;
+        background-color: #FFFFFF !important;
     }
     
     .js-plotly-plot .plotly .bg {
-        fill: #191414 !important;
+        fill: #FFFFFF !important;
     }
     
     /* Chart text */
     .js-plotly-plot .plotly .gtitle {
-        fill: #FFFFFF !important;
+        fill: #191414 !important;
         font-size: 24px !important;
         font-weight: 500 !important;
     }
     
     .js-plotly-plot .plotly .xtick text,
     .js-plotly-plot .plotly .ytick text {
-        fill: #FFFFFF !important;
+        fill: #191414 !important;
         font-size: 12px !important;
     }
     
-    /* Grid lines - making them more subtle */
+    /* Grid lines */
     .js-plotly-plot .plotly .gridlayer path {
-        stroke: #282828 !important;
-        stroke-opacity: 0.3 !important;
+        stroke: #E5E5E5 !important;
+        stroke-opacity: 0.5 !important;
     }
     
     /* Axis lines */
@@ -80,7 +80,7 @@ st.markdown("""
     /* Tabs styling */
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
-        background-color: #191414;
+        background-color: #FFFFFF;
         padding: 0;
         border-radius: 0;
     }
@@ -88,15 +88,15 @@ st.markdown("""
     .stTabs [data-baseweb="tab"] {
         height: 50px;
         white-space: pre-wrap;
-        background-color: #191414;
+        background-color: #FFFFFF;
         border-radius: 0;
         padding: 10px 20px;
-        color: #FFFFFF;
+        color: #191414;
         font-weight: 500;
     }
     
     .stTabs [aria-selected="true"] {
-        background-color: #191414 !important;
+        background-color: #FFFFFF !important;
         color: #1DB954 !important;
         font-weight: 600;
         border-bottom: 2px solid #1DB954 !important;
@@ -106,15 +106,15 @@ st.markdown("""
     .stSelectbox [data-baseweb="select"],
     .stNumberInput [data-baseweb="input"],
     .stMultiSelect [data-baseweb="select"] {
-        background-color: #191414 !important;
-        color: #FFFFFF !important;
-        border: 1px solid #535353 !important;
+        background-color: #FFFFFF !important;
+        color: #191414 !important;
+        border: 1px solid #E5E5E5 !important;
     }
     
     /* Sidebar */
     [data-testid="stSidebar"] {
-        background-color: #191414 !important;
-        border-right: 1px solid #282828 !important;
+        background-color: #FFFFFF !important;
+        border-right: 1px solid #E5E5E5 !important;
     }
     
     [data-testid="stSidebar"] .block-container {
@@ -125,7 +125,7 @@ st.markdown("""
     .stMarkdown,
     .stText,
     p, div, span {
-        color: #FFFFFF !important;
+        color: #191414 !important;
     }
     
     /* Hide Streamlit branding */
@@ -135,8 +135,8 @@ st.markdown("""
     
     /* Tooltip styling */
     .plotly .tooltip {
-        background-color: #191414 !important;
-        color: #FFFFFF !important;
+        background-color: #FFFFFF !important;
+        color: #191414 !important;
         border: 1px solid #1DB954 !important;
     }
 </style>
@@ -144,12 +144,12 @@ st.markdown("""
 
 # Update Spotify colors with additional shades
 SPOTIFY_COLORS = {
-    'background': '#191414',     # Spotify black
+    'background': '#FFFFFF',     # White background
     'primary': '#1DB954',       # Spotify green
     'primary_light': '#1ed760', # Lighter green
-    'text': '#FFFFFF',          # White
+    'text': '#191414',          # Black text
     'secondary': '#535353',     # Dark gray
-    'surface': '#282828',       # Surface color
+    'surface': '#F8F8F8',       # Light surface
     'error': '#E91429',         # Error red
     'success': '#1DB954',       # Success green
     'warning': '#FF5722'        # Warning orange
@@ -160,7 +160,7 @@ GENRE_COLORS = {
     'Pop': '#1DB954',      # Spotify green
     'Hip Hop': '#1ed760',  # Lighter green
     'R&B': '#535353',      # Gray
-    'Rock': '#b3b3b3',     # Light gray
+    'Rock': '#282828',     # Dark gray
     'Jazz': '#4687d6',     # Blue
     'Classical': '#ff6437', # Orange
     'EDM': '#ff5722',      # Deep orange
@@ -285,44 +285,17 @@ with tab1:
         x='Release Year',
         y=metric_option,
         color='Genre',
-        template="plotly_dark"
+        template="none"  # Use none template to apply our custom theme
     )
     
-    # Update layout directly
+    # Apply theme
+    update_plot_theme(fig)
     fig.update_layout(
         title=dict(
             text=f"{metric_option} by Genre Over Time",
-            font=dict(size=24, color='#FFFFFF'),
+            font=dict(size=24, color='#191414'),
             x=0.5,
             y=0.95
-        ),
-        plot_bgcolor='#191414',
-        paper_bgcolor='#191414',
-        font_color='#FFFFFF',
-        showlegend=True,
-        legend=dict(
-            bgcolor='#191414',
-            font=dict(color='#FFFFFF'),
-            bordercolor='#282828',
-            borderwidth=1
-        ),
-        xaxis=dict(
-            gridcolor='#282828',
-            gridwidth=1,
-            griddash='dot',
-            tickfont=dict(color='#FFFFFF'),
-            showline=True,
-            linecolor='#535353',
-            linewidth=1
-        ),
-        yaxis=dict(
-            gridcolor='#282828',
-            gridwidth=1,
-            griddash='dot',
-            tickfont=dict(color='#FFFFFF'),
-            showline=True,
-            linecolor='#535353',
-            linewidth=1
         ),
         margin=dict(t=100, b=50, l=50, r=50)
     )
@@ -363,46 +336,20 @@ with tab2:
         x='Artist',
         y=metric,
         color='Genre',
-        template="plotly_dark"
+        template="none"
     )
     
+    # Apply theme
+    update_plot_theme(fig)
     fig.update_layout(
         title=dict(
             text=f"Top {top_n} Artists by {metric}",
-            font=dict(size=24, color='#FFFFFF'),
+            font=dict(size=24, color='#191414'),
             x=0.5,
             y=0.95
         ),
-        plot_bgcolor='#191414',
-        paper_bgcolor='#191414',
-        font_color='#FFFFFF',
-        showlegend=True,
-        legend=dict(
-            bgcolor='#191414',
-            font=dict(color='#FFFFFF'),
-            bordercolor='#282828',
-            borderwidth=1
-        ),
-        xaxis=dict(
-            gridcolor='#282828',
-            gridwidth=1,
-            griddash='dot',
-            tickfont=dict(color='#FFFFFF'),
-            showline=True,
-            linecolor='#535353',
-            linewidth=1,
-            tickangle=45
-        ),
-        yaxis=dict(
-            gridcolor='#282828',
-            gridwidth=1,
-            griddash='dot',
-            tickfont=dict(color='#FFFFFF'),
-            showline=True,
-            linecolor='#535353',
-            linewidth=1
-        ),
-        margin=dict(t=100, b=100, l=50, r=50)  # Increased bottom margin for rotated labels
+        xaxis_tickangle=45,
+        margin=dict(t=100, b=100, l=50, r=50)
     )
     
     st.plotly_chart(fig, use_container_width=True)
@@ -433,37 +380,29 @@ with tab3:
         locations='Country',
         locationmode='country names',
         color=metric,
-        color_continuous_scale=['#535353', '#1DB954'],
-        template="plotly_dark"
+        color_continuous_scale=['#E5E5E5', '#1DB954'],
+        template="none"
     )
     
+    # Apply theme
+    update_plot_theme(fig)
     fig.update_layout(
         title=dict(
             text=f"Global Distribution of {metric}",
-            font=dict(size=24, color='#FFFFFF'),
+            font=dict(size=24, color='#191414'),
             x=0.5,
             y=0.95
-        ),
-        plot_bgcolor='#191414',
-        paper_bgcolor='#191414',
-        font_color='#FFFFFF',
-        showlegend=True,
-        legend=dict(
-            bgcolor='#191414',
-            font=dict(color='#FFFFFF'),
-            bordercolor='#282828',
-            borderwidth=1
         ),
         margin=dict(t=100, b=50, l=50, r=50),
         geo=dict(
             showframe=False,
             showcoastlines=True,
             projection_type='equirectangular',
-            bgcolor='#191414',
-            lakecolor='#191414',
-            landcolor='#282828',
+            bgcolor='#FFFFFF',
+            lakecolor='#FFFFFF',
+            landcolor='#F8F8F8',
             coastlinecolor='#535353',
-            countrycolor='#535353'
+            countrycolor='#E5E5E5'
         )
     )
     
@@ -590,39 +529,19 @@ with tab4:
                 x='Importance',
                 y='Feature',
                 orientation='h',
-                template="plotly_dark"
+                template="none"
             )
             
+            # Apply theme
+            update_plot_theme(fig)
             fig.update_layout(
                 title=dict(
                     text="Feature Importance in Prediction",
-                    font=dict(size=24, color='#FFFFFF'),
+                    font=dict(size=24, color='#191414'),
                     x=0.5,
                     y=0.95
                 ),
-                plot_bgcolor='#191414',
-                paper_bgcolor='#191414',
-                font_color='#FFFFFF',
-                showlegend=False,
-                xaxis=dict(
-                    gridcolor='#282828',
-                    gridwidth=1,
-                    griddash='dot',
-                    tickfont=dict(color='#FFFFFF'),
-                    showline=True,
-                    linecolor='#535353',
-                    linewidth=1
-                ),
-                yaxis=dict(
-                    gridcolor='#282828',
-                    gridwidth=1,
-                    griddash='dot',
-                    tickfont=dict(color='#FFFFFF'),
-                    showline=True,
-                    linecolor='#535353',
-                    linewidth=1
-                ),
-                margin=dict(t=100, b=50, l=150, r=50)  # Increased left margin for feature names
+                margin=dict(t=100, b=50, l=150, r=50)
             )
             
             st.plotly_chart(fig, use_container_width=True)
@@ -648,4 +567,42 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True
-) 
+)
+
+# Update all plot layouts to use the new theme
+def update_plot_theme(fig):
+    fig.update_layout(
+        plot_bgcolor='#FFFFFF',
+        paper_bgcolor='#FFFFFF',
+        font_color='#191414',
+        title=dict(
+            font=dict(color='#191414', size=24),
+            x=0.5,
+            y=0.95
+        ),
+        legend=dict(
+            bgcolor='#FFFFFF',
+            font=dict(color='#191414'),
+            bordercolor='#E5E5E5',
+            borderwidth=1
+        ),
+        xaxis=dict(
+            gridcolor='#E5E5E5',
+            gridwidth=1,
+            griddash='dot',
+            tickfont=dict(color='#191414'),
+            showline=True,
+            linecolor='#535353',
+            linewidth=1
+        ),
+        yaxis=dict(
+            gridcolor='#E5E5E5',
+            gridwidth=1,
+            griddash='dot',
+            tickfont=dict(color='#191414'),
+            showline=True,
+            linecolor='#535353',
+            linewidth=1
+        )
+    )
+    return fig 
